@@ -1,0 +1,21 @@
+Package: pvrep
+Type: Package
+Title: Arbitrary analysis using replicate weights and plausible values 
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.2
+Imports: 
+    glue,
+    mitools,
+    purrr,
+    survey,
+    tibble
