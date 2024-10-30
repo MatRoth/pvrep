@@ -28,9 +28,8 @@ within_country_analysis <- function(cur_country, # Character vector of length on
                                     rep_weights, # Complete PIAAC dataframe
                                     rep_method, #FAY or JK2 according to data
                                     rho = NULL,
-                                    dat,
-                                    debug = F){ # Dataframe with replicate weights.
-  if(debug == T) browser()
+                                    dat){ # Dataframe with replicate weights.
+
   # Subset data
   cur_analysis_data <- dat[cur_country == dat[[country_var_name]],]
 
