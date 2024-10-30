@@ -11,6 +11,7 @@
 #' @param rep_method Character vector of length one. "Fay" or "JK2" according to data
 #' @param rho # Numeric of length one. Supplied by data provider.
 #' @param dat  # Dataframe with replicate weights.
+#' @param debug
 #'
 #' @returns Dataframe with number of rows equal to computed statistics and the follwing columns.
 #'
@@ -27,10 +28,10 @@ within_country_analysis <- function(cur_country, # Character vector of length on
                                     rep_weights, # Complete PIAAC dataframe
                                     rep_method, #FAY or JK2 according to data
                                     rho = NULL,
-                                    dat ){ # Dataframe with replicate weights.
-
+                                    dat,
+                                    debug = F){ # Dataframe with replicate weights.
+  if(debug == T) browser()
   # Subset data
-
   cur_analysis_data <- dat[cur_country == dat[[country_var_name]],]
 
   # Create survey object
