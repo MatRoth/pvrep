@@ -31,15 +31,15 @@ within_country_analysis(
 
 \item{cur_func}{Analysis function}
 
-\item{main_weight}{Vector with main weights.}
+\item{main_weight}{Character of length one. Name of the column with main weights.}
 
-\item{rep_weights}{Complete PIAAC dataframe}
+\item{rep_weights}{Dataframe with replicate weights}
 
 \item{rep_method}{Character vector of length one. "Fay" or "JK2" according to data}
 
 \item{rho}{# Numeric of length one. Supplied by data provider.}
 
-\item{dat}{# Dataframe with replicate weights.}
+\item{dat}{Data}
 }
 \value{
 Dataframe with number of rows equal to computed statistics and the follwing columns.

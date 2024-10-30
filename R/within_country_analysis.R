@@ -6,12 +6,11 @@
 #' @param cur_pv  Character vector. Column names of the current plausible values.
 #' @param cur_pv_name Character vector of length one. The name the plausible value will be referenced by in the analysis function.
 #' @param cur_func Analysis function
-#' @param main_weight Vector with main weights.
-#' @param rep_weights Complete PIAAC dataframe
+#' @param main_weight Character of length one. Name of the column with main weights.
+#' @param rep_weights Dataframe with replicate weights
 #' @param rep_method Character vector of length one. "Fay" or "JK2" according to data
 #' @param rho # Numeric of length one. Supplied by data provider.
-#' @param dat  # Dataframe with replicate weights.
-#' @param debug
+#' @param dat  Data
 #'
 #' @returns Dataframe with number of rows equal to computed statistics and the follwing columns.
 #'
