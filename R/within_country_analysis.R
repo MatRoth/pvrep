@@ -3,8 +3,8 @@
 #' @param cur_country  Character vector of length one. Must be the same as in the dataset.
 #' @param country_var_name  Character vector of length one. Name of column containing country names.
 #' @param cur_variables Character vector. Any column name in the dataset that is not a plausible value used in the analysis function.
-#' @param cur_pv  Character vector. Column names of the current plausible values.
-#' @param cur_pv_name Character vector of length one. The name the plausible value will be referenced by in the analysis function.
+#' @param cur_pv  List of character vectors or one character vector. Column names of the current plausible values.
+#' @param cur_pv_name Character vector. The names the plausible values will be referenced by in the analysis function.
 #' @param cur_func Analysis function
 #' @param main_weight Character of length one. Name of the column with main weights.
 #' @param rep_weights Dataframe with replicate weights
@@ -29,6 +29,9 @@ within_country_analysis <- function(cur_country, # Character vector of length on
                                     rho = NULL,
                                     dat){ # Dataframe with replicate weights.
 
+  # Enforce list, if single vector of cur_pv is supplied
+  if(!is.list(cur_pv)) cur_pv <- list(cur_pv)
+
   # Subset data
   cur_analysis_data <- dat[cur_country == dat[[country_var_name]],]
 
@@ -43,8 +46,10 @@ within_country_analysis <- function(cur_country, # Character vector of length on
   # If PV are supplied
   if(!is.null(cur_pv) & !is.null(cur_pv_name)){
     # Outer loop -> Plausible values
-    cur_pvs_formula_part <- paste(cur_pv,collapse = "+")
-    current_pv_formula <- as.formula(glue::glue("{cur_pv_name}~{cur_pvs_formula_part}"))
+    cur_pvs_formula_part <- map_chr(cur_pv,paste,collapse = "+")
+    current_pv_formula <- map2(cur_pv_name,
+                               cur_pvs_formula_part,
+                               \(name_elem, form_elem) as.formula(glue::glue("{name_elem}~{form_elem}")))
     mi_results <- mitools::withPV(
       mapping = current_pv_formula,
       data = cur_analysis_data,
