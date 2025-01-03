@@ -24,9 +24,10 @@ within_country_analysis <- function(cur_country, # Character vector of length on
                                     cur_pv_name = NULL, # Character vector of length one. The name the plausible value will be referenced by in the analysis function.
                                     cur_func, # Analysis function
                                     main_weight, # Vector with main weights.
-                                    rep_weights, # Complete PIAAC dataframe
+                                    rep_weights, # Character vector with names of replicate weights
                                     rep_method, #FAY or JK2 according to data
                                     rho = NULL,
+                                    number_of_rep_weights = NULL,
                                     dat){ # Dataframe with replicate weights.
 
   # Enforce list, if single vector of cur_pv is supplied
@@ -41,7 +42,7 @@ within_country_analysis <- function(cur_country, # Character vector of length on
 
   # Create survey object
   cur_svy_obj <- survey::svrepdesign(data = cur_analysis_data,
-                                     repweights = rep_weights,
+                                     repweights = cur_analysis_data[,rep_weights],
                                      weights = cur_analysis_data[[main_weight]],
                                      variables = cur_variables,
                                      type = rep_method,
