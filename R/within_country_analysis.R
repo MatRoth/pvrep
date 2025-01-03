@@ -32,8 +32,12 @@ within_country_analysis <- function(cur_country, # Character vector of length on
   # Enforce list, if single vector of cur_pv is supplied
   if(!is.list(cur_pv)) cur_pv <- list(cur_pv)
 
-  # Subset data
-  cur_analysis_data <- dat[cur_country == dat[[country_var_name]],]
+  # Subset data if necessary
+  if(is.null(cur_country) & is.null(country_var_name)){
+    cur_analysis_data <- dat} else {
+      cur_analysis_data <- dat[cur_country == dat[[country_var_name]],]
+    }
+
 
   # Create survey object
   cur_svy_obj <- survey::svrepdesign(data = cur_analysis_data,
