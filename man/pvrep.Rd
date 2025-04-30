@@ -30,15 +30,15 @@ pvrep(
 
 \item{cur_pv_name}{Character vector. The names the plausible values will be referenced by in the analysis function.}
 
-\item{cur_func}{Analysis function}
+\item{cur_func}{Analysis function. See Details for information on how to define the analysis function.}
 
 \item{main_weight}{Character of length one. Name of the column with main weights.}
 
-\item{rep_weights}{Dataframe with replicate weights}
+\item{rep_weights}{Character vector of the names of the replicate weights column names in the dataset.}
 
 \item{rep_method}{Character vector of length one. "Fay" or "JK2" according to data}
 
-\item{rho}{# Numeric of length one. Supplied by data provider.}
+\item{rho}{Numeric of length one. Supplied by data provider.}
 
 \item{dat}{Data}
 }
@@ -54,6 +54,20 @@ Dataframe with number of rows equal to computed statistics and the following col
 }
 \description{
 Currently tailored towards the PIAAC Cycle 2 dataset. Might be expanded in future.
+The aim of the function is to make it simpler to write analysis code that works
+in the replicate weights/plausible value framework. The function abstracts the loops
+over replicate weights/plausible values and pools the results in an appropriate manner.
+}
+\details{
+The analysis function provided to pvrep performs the analysis taking into account
+replicate weights or replicate weights & plausible values.
+
+If only replicate weights are required (i.e. the analysis does not involve plausible values)
+the function needs the following arguments in this order: data, current_weight, current_variables.
+* `data` is the dataframe provided to pvrep.
+* `current_weight` is the weight used for the analysis.
+* `current_variables` are any other variable names (i.e. provided as a character vector) used in the analysis.
+This can be useful for performing loops over different combination of variables)
 }
 \author{
 Matthias Roth
