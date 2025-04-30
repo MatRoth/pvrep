@@ -1,4 +1,6 @@
-#' Within country analysis with replicate weights and/or plausible values
+#' Within country analysis with replicate weights and/or plausible values using the `survey` and `mitools` packages
+#'
+#' Currently tailored towards the PIAAC Cycle 2 dataset. Might be expanded in future.
 #'
 #' @param cur_country  Character vector of length one. Must be the same as in the dataset.
 #' @param country_var_name  Character vector of length one. Name of column containing country names.
@@ -12,18 +14,25 @@
 #' @param rho # Numeric of length one. Supplied by data provider.
 #' @param dat  Data
 #'
-#' @returns Dataframe with number of rows equal to computed statistics and the follwing columns.
+#' @returns Dataframe with number of rows equal to computed statistics and the following columns.
+#' * parameter: Name of the parameter.
+#' * est: Point estimate of the parameter.
+#' * se: Standard error of the parameter.
+#' * df: Degrees of freedom according to Lumely (LINK TO BLOGPOST)
+#' *ci_lwr: Lower bound of the 95% confidence interval.
+#' *ci_upr: Upper bound of the 95% confidence interval.
+#' *p_value: p value of a hypothesis test with H0 = 0.
 #'
 #' @author Matthias Roth
 #'
 #' @export
-within_country_analysis <- function(cur_country, # Character vector of length one. Must be the same as in the dataset.
-                                    country_var_name, # Character vector of length one. Name of column containing country names.
+pvrep <- function(cur_country,
+                                    country_var_name,
                                     cur_variables, # Character vector. Any column name in the dataset that is not a plausible value used in the analysis function.
                                     cur_pv = NULL, # Character vector. Column names of the current plausible values.
                                     cur_pv_name = NULL, # Character vector of length one. The name the plausible value will be referenced by in the analysis function.
                                     cur_func, # Analysis function
-                                    main_weight, # Vector with main weights.
+                                    main_weight, # Character vector length one, Name of the main weight column.
                                     rep_weights, # Character vector with names of replicate weights
                                     rep_method, #FAY or JK2 according to data
                                     rho = NULL,
