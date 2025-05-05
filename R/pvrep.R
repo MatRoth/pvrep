@@ -71,7 +71,7 @@ pvrep <- function(cur_country = NULL,
 
   # Create survey object
   cur_svy_obj <- survey::svrepdesign(data = cur_analysis_data,
-                                     repweights = cur_analysis_data[[rep_weights]],
+                                     repweights = cur_analysis_data[rep_weights],
                                      weights = cur_analysis_data[[main_weight]],
                                      variables = cur_variables,
                                      type = rep_method,
