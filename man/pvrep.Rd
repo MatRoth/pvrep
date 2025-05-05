@@ -2,7 +2,7 @@
 % Please edit documentation in R/pvrep.R
 \name{pvrep}
 \alias{pvrep}
-\title{Analysis with replicate weights and/or plausible values using the `survey` and `mitools` packages}
+\title{Analysis with replicate weights and/or plausible values using the \code{survey} and \code{mitools} packages}
 \usage{
 pvrep(
   cur_country = NULL,
@@ -15,7 +15,6 @@ pvrep(
   rep_weights,
   rep_method,
   rho = NULL,
-  number_of_rep_weights = NULL,
   dat
 )
 }
@@ -44,13 +43,15 @@ pvrep(
 }
 \value{
 Dataframe with number of rows equal to computed statistics and the following columns.
-* parameter: Name of the parameter.
-* est: Point estimate of the parameter.
-* se: Standard error of the parameter.
-* df: Degrees of freedom according to Lumely (https://notstatschat.rbind.io/2019/06/08/design-degrees-of-freedom-brief-note/)
-* ci_lwr: Lower bound of the 95% confidence interval.
-* ci_upr: Upper bound of the 95% confidence interval.
-* p_value: p value of a hypothesis test with H0 = 0.
+\itemize{
+\item parameter: Name of the parameter.
+\item est: Point estimate of the parameter.
+\item se: Standard error of the parameter.
+\item df: Degrees of freedom according to Lumely (https://notstatschat.rbind.io/2019/06/08/design-degrees-of-freedom-brief-note/)
+\item ci_lwr: Lower bound of the 95\% confidence interval.
+\item ci_upr: Upper bound of the 95\% confidence interval.
+\item p_value: p value of a hypothesis test with H0 = 0.
+}
 }
 \description{
 Currently tailored towards the PIAAC Cycle 2 dataset. Might be expanded in future.
@@ -59,22 +60,26 @@ in the replicate weights/plausible value framework. The function abstracts the l
 over replicate weights/plausible values and pools the results in an appropriate manner.
 }
 \details{
-The analysis function provided to `pvrep()` performs the analysis taking into account
+The analysis function provided to \code{pvrep()} performs the analysis taking into account
 replicate weights or replicate weights & plausible values.
 
 If only replicate weights are required (i.e. the analysis does not involve plausible values)
 the function needs the following arguments in this order: dat, current_weight, current_variables.
-* `dat` is the dataframe provided to pvrep.
-* `current_weight` is the weight used for the analysis.
-* `current_variables` are any other variable names (i.e. provided as a character vector) used in the analysis.
+\itemize{
+\item \code{dat} is the dataframe provided to pvrep.
+\item \code{current_weight} is the weight used for the analysis.
+\item \code{current_variables} are any other variable names (i.e. provided as a character vector) used in the analysis.
+}
 
 This can be useful for performing loops over different combination of variables)
 If plausible values are needed in addition to replicate weights the function needs the
 following argument in this order: dat, cur_weights, cur_pv_name, cur_variables.
-* `dat` is the dataframe provided to pvrep.
-* `current_weight` is a variable containing the current weight used for the analysis.
-* `cur_pv_name` is a variable containing the current plausible value(s) used in the analysis.
-* `current_variables` are any other variable names (i.e. provided as a character vector) used in the analysis.
+\itemize{
+\item \code{dat} is the dataframe provided to pvrep.
+\item \code{current_weight} is a variable containing the current weight used for the analysis.
+\item \code{cur_pv_name} is a variable containing the current plausible value(s) used in the analysis.
+\item \code{current_variables} are any other variable names (i.e. provided as a character vector) used in the analysis.
+}
 }
 \author{
 Matthias Roth
