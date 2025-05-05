@@ -75,7 +75,7 @@ pvrep <- function(cur_country = NULL,
                                      weights = cur_analysis_data[[main_weight]],
                                      variables = cur_variables,
                                      type = rep_method,
-                                     rho = if(rep_method == "Fay") rho else NULL)
+                                     rho = if(rep_method == "Fay") rho else 0)
 
   # If PV are supplied
   if(!is.null(cur_pv) & !is.null(cur_pv_name)){
